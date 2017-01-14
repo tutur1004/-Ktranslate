@@ -1,0 +1,10 @@
+#	Skript de traduction
+
+function translate(p: text, msg: text) :: text :
+	if "%{_p}%" is not "text":
+		set {_lang} to {sktranslate.lang.player.%{_p}%}
+	else:
+		set {_lang} to {sktranslate.lang.console}
+	set {_return.msg} to yml value "%{_lang}%.%{_msg}%" of file "plugins/SKtranslate/translate.yml"
+	return {_return.msg}
+#
