@@ -1,0 +1,29 @@
+#########################
+#						#
+#	Config Sections		#
+#						#
+#########################
+
+#	Langue par défaut
+default-lang: français
+
+#	Console lang
+console-lang: français
+
+#	enable lang list
+lang-list:
+- français
+- english
+
+
+#########################
+#						#
+#	lang edit Sections	#
+#						#
+#########################
+
+français:
+	message1: message1 est un message français !
+
+english:
+	message1: message1 is an english message !
