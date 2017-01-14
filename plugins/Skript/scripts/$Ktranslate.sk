@@ -8,3 +8,7 @@ function translate(p: text, msg: text) :: text :
 	set {_return.msg} to yml value "%{_lang}%.%{_msg}%" of file "plugins/SKtranslate/translate.yml"
 	return {_return.msg}
 #
+
+on load:
+	set {sktranslate.lang.console} to yml value "console-lang" of file "plugins/SKtranslate/translate.yml"
+#
