@@ -13,3 +13,20 @@ on load:
 	set {sktranslate.lang.console} to yml value "console-lang" of file "plugins/SKtranslate/translate.yml"
 	set {sktranslate.lang-list::*} to yml list "lang-list" of file "plugins/SKtranslate/translate.yml"
 #
+
+command /lang [<text>]:
+	trigger:
+		if arg-1 is not set:
+			#send help skript
+		else:
+			loop {sktranslate.lang-list::*}:
+				if "%loop-value%" = "%arg-1%":
+					set {_good} to true
+					stop loop
+			if {_good} is true:
+				set {sktranslate.lang.player.%player name%} to "%arg-1%"
+			else:
+				send "&cCette langue n'extiste pas, &6langues dispo:"
+				loop {sktranslate.lang-list::*}:
+					send "%loop-value%"
+#
