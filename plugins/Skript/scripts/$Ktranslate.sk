@@ -43,7 +43,7 @@ command /lang [<text>]:
 			if {_good} is true:
 				set {sktranslate.lang.player.%{_p}'s uuid%} to "%arg-1%"
 			else:
-				send ""%translate(player, "sktranslate-help-lang-noexist")%%{sktranslate.lang-list::*}%" to player
+				send "%translate(player, "sktranslate-help-lang-noexist")%%{sktranslate.lang-list::*}%" to player
 				loop {sktranslate.lang-list::*}:
 					send "%loop-value%"
 #
