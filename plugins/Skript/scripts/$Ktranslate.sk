@@ -35,7 +35,7 @@ command /lang [<text>]:
 			else:
 				send "%translate(player, "sktranslate-help-info")%" to player
 				send "%translate(player, "sktranslate-help-lang-list")%%{sktranslate.lang-list::*}%" to player
-		else:
+		else if:
 			loop {sktranslate.lang-list::*}:
 				if "%loop-value%" = "%arg-1%":
 					set {_good} to true
@@ -46,4 +46,10 @@ command /lang [<text>]:
 				send "%translate(player, "sktranslate-help-lang-noexist")%%{sktranslate.lang-list::*}%" to player
 				loop {sktranslate.lang-list::*}:
 					send "%loop-value%"
+		if "%arg-1%" is "reload":
+			if player has permission "sktranslate.lang-reload":
+				set {sktranslate.lang.player} to yml value "default-lang" of file "plugins/SKtranslate/translate.yml"
+				set {sktranslate.lang.console} to yml value "console-lang" of file "plugins/SKtranslate/translate.yml"
+				set {sktranslate.lang-list::*} to yml list "lang-list" of file "plugins/SKtranslate/translate.yml"
+				set {sktranslate.config.join-notify} to yml value "join-notify" of file "plugins/SKtranslate/translate.yml"
 #
