@@ -4,13 +4,16 @@
 #						#
 #########################
 
-#	Langue par défaut
+#	Default language, for player messages
 default-lang: français
 
 #	Console lang
 console-lang: français
 
-#	enable lang list
+#	Send a message when player is first join
+join-notify: true
+
+#	enable lang list   --   Be carrefull, all traduction of lang need to be set in lang edit sections !!
 lang-list:
 - français
 - english
@@ -18,12 +21,24 @@ lang-list:
 
 #########################
 #						#
-#	lang edit Sections	#
+#	lang edit sections	#
 #						#
 #########################
 
 français:
-	message1: message1 est un message français !
+	exemple-message1: "message1 est un message français !"
+	#	Message envoyé au joueur lors de sa première connection
+	sktranslate-join-notif: "&6Vous pouvez définir votre langue avec &b/lang"
+	sktranslate-help-info: "&6Pour définir votre langues utilisez &b/lang <nom de langue>"
+	#	Si vous laissez ce message vide, la liste des langue sera affichée directement
+	sktranslate-help-lang-list: "&6Langues disponibles&c:&e "
+	sktranslate-help-lang-noexist: "&cErreur&4: &cCette langue n'existe pas&f, &6Langues disponibles&c:&e "
 
 english:
-	message1: message1 is an english message !
+	exemple-message1: "message1 is an english message !"
+	#	Message sent to the player during his first connection
+	sktranslate-join-notif: "&6You can set your lang with &b/lang"
+	sktranslate-help-info: "&6To set your languages please use &b/lang <lang name>"
+	#	If you leave this message blank, the list of languages will be displayed directly
+	sktranslate-help-lang-list: "&6Available languages&c:&e "
+	sktranslate-help-lang-noexist: "&cError&4: &cThis language does not exist&f, &6Available languages&c:&e "
