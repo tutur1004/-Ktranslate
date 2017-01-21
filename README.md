@@ -12,6 +12,10 @@ With $Ktranslate you can set differents messages for differents langages players
 /lang [<lang name>]
 Desc: set your lang
 Perms: no permissions, all players can use it !
+
+/lang reload
+Desc: reload config, ne need to reload when you change a traduction, only when you add new lang or changing default language
+Perms: sktranslate.lang-reload
 ```
 
 ### Use in Skript:
