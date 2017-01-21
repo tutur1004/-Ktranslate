@@ -35,10 +35,10 @@ command /lang [<text>]:
 			else:
 				send "%translate(player, "sktranslate-help-info")%" to player
 				send "%translate(player, "sktranslate-help-lang-list")%%{sktranslate.lang-list::*}%" to player
-		else if:
+		else:
 			loop {sktranslate.lang-list::*}:
 				if "%loop-value%" = "%arg-1%":
-					set {_good} to true
+		38			set {_good} to true
 					stop loop
 			if {_good} is true:
 				set {sktranslate.lang.player.%{_p}'s uuid%} to "%arg-1%"
