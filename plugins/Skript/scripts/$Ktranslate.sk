@@ -1,15 +1,15 @@
 #	Skript de traduction
 
-function translate(p: text, msg: text) :: text :
+function translate(p: text, msg: text) :: text:
 	if "%{_p}%" is not "text":
-		set {_p} to {_p} parsed as offline player
-		if {sktranslate.lang.player.%{_p}'s uuid%} is not set:
+		if {sktranslate.lang.player.%{_p}%} is not set:
 			set {_lang} to {sktranslate.lang.player}
 		else:
-			set {_lang} to {sktranslate.lang.player.%{_p}'s uuid%}
+			set {_lang} to {sktranslate.lang.player.%{_p}%}
 	else:
 		set {_lang} to {sktranslate.lang.console}
-	set {_return.msg} to yml value "%{_lang}%.%{_msg}%" of file "plugins/SKtranslate/translate.yml"
+	set {_return.msg} to skutil yml value "%{_lang}%.%{_msg}%" of file "plugins/SKtranslate/translate.yml"
+
 	return {_return.msg}
 #
 
@@ -23,33 +23,32 @@ on load:
 on first join:
 	if {sktranslate.config.join-notify} is "true":
 		wait 2 seconds
-		send "%translate("text", "sktranslate-join-notif")%" to player
+		send "%translate(""text"", ""sktranslate-join-notif"")%" to player
 #
 
 command /lang [<text>]:
 	trigger:
 		if arg-1 is not set:
 			if {sktranslate.lang.player.%player's uuid%} is not set:
-				send "%translate("text", "sktranslate-help-info")%" to player
-				send "%translate("text", "sktranslate-help-lang-list")%" to player
+				send "%translate(""text"", ""sktranslate-help-info"")%" to player
+				send "%translate(""text"", ""sktranslate-help-lang-list"")%" to player
 			else:
-				send "%translate(player, "sktranslate-help-info")%" to player
-				send "%translate(player, "sktranslate-help-lang-list")%%{sktranslate.lang-list::*}%" to player
-		else:
-			loop {sktranslate.lang-list::*}:
-				if "%loop-value%" = "%arg-1%":
-					set {_good} to true
-					stop loop
-			if {_good} is true:
-				set {sktranslate.lang.player.%{_p}'s uuid%} to "%arg-1%"
-			else:
-				send "%translate(player, "sktranslate-help-lang-noexist")%%{sktranslate.lang-list::*}%" to player
-				loop {sktranslate.lang-list::*}:
-					send "%loop-value%"
+				send "%translate(player's uuid, ""sktranslate-help-info"")%" to player
+				send "%translate(player's uuid, ""sktranslate-help-lang-list"")%%{sktranslate.lang-list::*}%" to player
+			stop trigger
 		if "%arg-1%" is "reload":
 			if player has permission "sktranslate.lang-reload":
 				set {sktranslate.lang.player} to yml value "default-lang" of file "plugins/SKtranslate/translate.yml"
 				set {sktranslate.lang.console} to yml value "console-lang" of file "plugins/SKtranslate/translate.yml"
 				set {sktranslate.lang-list::*} to yml list "lang-list" of file "plugins/SKtranslate/translate.yml"
 				set {sktranslate.config.join-notify} to yml value "join-notify" of file "plugins/SKtranslate/translate.yml"
+		else:
+			loop {sktranslate.lang-list::*}:
+				if "%loop-value%" = "%arg-1%":
+					set {_good} to true
+					stop loop
+			if {_good} is true:
+				set {sktranslate.lang.player.%player's uuid%} to "%arg-1%"
+			else:
+				send "%translate(player's uuid, ""sktranslate-help-lang-noexist"")%%{sktranslate.lang-list::*}%" to player
 #
